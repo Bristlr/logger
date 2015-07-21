@@ -3,6 +3,7 @@ module.exports = function(injectedConsoleLog) {
 	var consoleLog = injectedConsoleLog || console.log;
 
 	function count(property, value) {
+		if (!value) value = 1;
 		consoleLog("count#" + property + "=" + value);
 	}
 

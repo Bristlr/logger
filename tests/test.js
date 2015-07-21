@@ -10,6 +10,16 @@ test("Logger can count a value", function(done) {
 	done();
 
 });
+test("Logger counts 1 by default", function(done) {
+
+	var l = new require("../index.js")(fakeConsoleLog);
+
+	l.count("sheep");
+
+	assert.equal(loggedString, "count#sheep=1");
+	done();
+
+});
 
 test("Logger can measure a value", function(done) {
 
