@@ -1,0 +1,22 @@
+{
+  "name": "bristlr-logger",
+  "version": "0.1.0",
+  "description": "Basic logging of measure and count",
+  "main": "index.js",
+  "scripts": {
+    "test": "./run_tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bristlr/logger.git"
+  },
+  "keywords": [
+    "logging"
+  ],
+  "author": "John Kershaw",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Bristlr/logger/issues"
+  },
+  "homepage": "https://github.com/Bristlr/logger#readme"
+}

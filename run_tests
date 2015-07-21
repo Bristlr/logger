@@ -1,0 +1,8 @@
+echo "=========================================="
+echo "Running Unit Tests"
+echo "=========================================="
+
+set -e
+
+mocha tests/ --ui qunit --reporter list --timeout 5000 --recursive
+echo "Unit tests complete"
