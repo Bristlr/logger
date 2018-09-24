@@ -19,7 +19,7 @@ module.exports = function(injectedConsoleLog) {
 	}
 
 	function cloudWatchLog(type, property, value) {
-		const timestamp = new Date().getTime();
+		const timestamp = Math.round(new Date().getTime()/1000);
 		console.log(`MONITORING|${timestamp}|${value}|${type}|${property}|#tag1:lambda`);
 	}
 
