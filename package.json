@@ -1,10 +1,10 @@
 {
   "name": "bristlr-logger",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Basic logging of measure and count",
   "main": "index.js",
   "scripts": {
-    "test": "./run_tests"
+    "test": "mocha tests/ --ui qunit --reporter list --timeout 5000 --recursive"
   },
   "repository": {
     "type": "git",
