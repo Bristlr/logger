@@ -1,10 +1,10 @@
 {
   "name": "bristlr-logger",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Basic logging of measure and count",
   "main": "index.js",
   "scripts": {
-    "test": "mocha tests/ --ui qunit --reporter list --timeout 5000 --recursive"
+    "test": "mocha tests/ --ui bdd --reporter list --timeout 5000 --recursive"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/Bristlr/logger/issues"
   },
-  "homepage": "https://github.com/Bristlr/logger#readme"
+  "homepage": "https://github.com/Bristlr/logger#readme",
+  "dependencies": {
+    "mocha": "^6.1.4"
+  }
 }
