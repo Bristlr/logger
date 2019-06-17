@@ -29,24 +29,30 @@ module.exports = function(injectedConsoleLog, injectedTimestamp) {
 
 		const logTags = [];
 
-		if (tags) {
-			if (typeof tags == "string") {
-				logTags.push("tags:" + tags);
-			}
-			if (Array.isArray(tags)) {
-				tags.forEach(function(tag) {
-					logTags.push("tags:" + tag);
-				});
-			}
-		}
-
 		if (process.env.AWS_LAMBDA_FUNCTION_NAME) {
-			logTags.push("tags:lambda");
-			logTags.push("tags:lambdaFunction." + process.env.AWS_LAMBDA_FUNCTION_NAME);
+			logTags.push("host:lambda");
+			logTags.push("lambdaFunction:" + process.env.AWS_LAMBDA_FUNCTION_NAME);
 		}
 
-		if (logTags.length == 0) {
+		if (!tags && !logTags) {
 			return "";
+		}
+
+		if (tags) {
+
+			if (!Array.isArray(tags)) {
+				tags = [tags];
+			}
+
+			tags.forEach(function(tag) {
+
+				if (typeof tag == "string") {
+					logTags.push("tags:" + tag);
+				} else {
+					const keys = Object.keys(tag);
+					logTags.push(keys[0] + ":" + tag[keys[0]]);
+				}
+			});
 		}
 
 		return logTags.join(",");

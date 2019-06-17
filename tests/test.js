@@ -32,9 +32,13 @@ describe("index.js", function() {
 
 		const l = new require("../index.js")(fakeConsoleLog, fakeTimestamp);
 
-		l.count("cats", 2, ["foo", "baa"]);
+		l.count("cats", 2, [{
+			"config": "foo"
+		}, {
+			"tag": "baa"
+		}]);
 
-		assert.equal(loggedString, "MONITORING|123456|2|count|cats|tags:foo,tags:baa");
+		assert.equal(loggedString, "MONITORING|123456|2|count|cats|config:foo,tag:baa");
 		done();
 
 	});
@@ -87,33 +91,35 @@ describe("index.js", function() {
 
 		const l = new require("../index.js")(fakeConsoleLog, fakeTimestamp);
 
-		l.time("cows", 128, "baa");
+		l.time("cows", 128, {"config":"baa"});
 
-		assert.equal(loggedString, "MONITORING|123456|128ms|measure|cows|tags:baa");
+		assert.equal(loggedString, "MONITORING|123456|128ms|measure|cows|config:baa");
 		done();
 
 	});
 
 	it("Add Lambda tag if Lambda env var present", function(done) {
 
-		process.env.AWS_LAMBDA_FUNCTION_NAME = "lambdaFunctionName"
+		process.env.AWS_LAMBDA_FUNCTION_NAME = "lambdaFunctionName";
+
 		const l = new require("../index.js")(fakeConsoleLog, fakeTimestamp);
 
 		l.time("cows", 128);
 
-		assert.equal(loggedString, "MONITORING|123456|128ms|measure|cows|tags:lambda,tags:lambdaFunction.lambdaFunctionName");
+		assert.equal(loggedString, "MONITORING|123456|128ms|measure|cows|host:lambda,lambdaFunction:lambdaFunctionName");
 		done();
 
 	});
 
 	it("Add Lambda tag if Lambda env var present, with tags", function(done) {
 
-		process.env.AWS_LAMBDA_FUNCTION_NAME = "lambdaFunctionName"
+		process.env.AWS_LAMBDA_FUNCTION_NAME = "lambdaFunctionName";
+
 		const l = new require("../index.js")(fakeConsoleLog, fakeTimestamp);
 
-		l.time("cows", 128, ["bristlr", "stats"]);
+		l.time("cows", 128, [{"config":"bristlr"}, {"tags":"stats"}]);
 
-		assert.equal(loggedString, "MONITORING|123456|128ms|measure|cows|tags:bristlr,tags:stats,tags:lambda,tags:lambdaFunction.lambdaFunctionName");
+		assert.equal(loggedString, "MONITORING|123456|128ms|measure|cows|host:lambda,lambdaFunction:lambdaFunctionName,config:bristlr,tags:stats");
 		done();
 
 	});

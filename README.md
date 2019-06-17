@@ -16,11 +16,11 @@ l.count("accountCreated", 2);
 
 l.count("accountCreated", 2, "tag");
 
-l.count("accountCreated", 2, ["multiple","tags"]);
+l.count("accountCreated", 2, {"animal":"doggo"});
 
 l.measure("someStat", 100);
 
-l.measure("someStat", 100, ["multiple","tags"]);
+l.measure("someStat", 100, [{"foo": "baa"}, {"animals": "cat""]);
 
 l.time("someStat", 100);
 
