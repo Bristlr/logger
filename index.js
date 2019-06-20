@@ -55,7 +55,11 @@ module.exports = function(injectedConsoleLog, injectedTimestamp) {
 			});
 		}
 
-		return logTags.join(",");
+		if (logTags.length == 0) {
+			return "";
+		}
+
+		return "#" + logTags.join(",");
 	}
 
 	return {

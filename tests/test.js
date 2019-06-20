@@ -23,7 +23,7 @@ describe("index.js", function() {
 
 		l.count("cats", 2, "foo");
 
-		assert.equal(loggedString, "MONITORING|123456|2|count|cats|tags:foo");
+		assert.equal(loggedString, "MONITORING|123456|2|count|cats|#tags:foo");
 		done();
 
 	});
@@ -38,7 +38,7 @@ describe("index.js", function() {
 			"tag": "baa"
 		}]);
 
-		assert.equal(loggedString, "MONITORING|123456|2|count|cats|config:foo,tag:baa");
+		assert.equal(loggedString, "MONITORING|123456|2|count|cats|#config:foo,tag:baa");
 		done();
 
 	});
@@ -71,7 +71,7 @@ describe("index.js", function() {
 
 		l.measure("dogs.speed", 0.66, "foo");
 
-		assert.equal(loggedString, "MONITORING|123456|0.66|measure|dogs.speed|tags:foo");
+		assert.equal(loggedString, "MONITORING|123456|0.66|measure|dogs.speed|#tags:foo");
 		done();
 
 	});
@@ -93,7 +93,7 @@ describe("index.js", function() {
 
 		l.time("cows", 128, {"config":"baa"});
 
-		assert.equal(loggedString, "MONITORING|123456|128ms|measure|cows|config:baa");
+		assert.equal(loggedString, "MONITORING|123456|128ms|measure|cows|#config:baa");
 		done();
 
 	});
@@ -106,7 +106,7 @@ describe("index.js", function() {
 
 		l.time("cows", 128);
 
-		assert.equal(loggedString, "MONITORING|123456|128ms|measure|cows|host:lambda,lambdaFunction:lambdaFunctionName");
+		assert.equal(loggedString, "MONITORING|123456|128ms|measure|cows|#host:lambda,lambdaFunction:lambdaFunctionName");
 		done();
 
 	});
@@ -119,7 +119,7 @@ describe("index.js", function() {
 
 		l.time("cows", 128, [{"config":"bristlr"}, {"tags":"stats"}]);
 
-		assert.equal(loggedString, "MONITORING|123456|128ms|measure|cows|host:lambda,lambdaFunction:lambdaFunctionName,config:bristlr,tags:stats");
+		assert.equal(loggedString, "MONITORING|123456|128ms|measure|cows|#host:lambda,lambdaFunction:lambdaFunctionName,config:bristlr,tags:stats");
 		done();
 
 	});
