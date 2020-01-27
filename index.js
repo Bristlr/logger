@@ -50,7 +50,9 @@ module.exports = function(injectedConsoleLog, injectedTimestamp) {
 					logTags.push("tags:" + tag);
 				} else {
 					const keys = Object.keys(tag);
-					logTags.push(keys[0] + ":" + tag[keys[0]]);
+					keys.forEach(function(key){
+						logTags.push(key + ":" + tag[key]);
+					});
 				}
 			});
 		}
