@@ -4,7 +4,7 @@
   "description": "Basic logging of measure and count",
   "main": "index.js",
   "scripts": {
-    "test": "mocha tests/ --ui bdd --reporter list --timeout 5000 --recursive"
+    "test": "npx mocha tests/ --ui bdd --reporter list --timeout 5000 --recursive"
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
     "url": "https://github.com/Bristlr/logger/issues"
   },
   "homepage": "https://github.com/Bristlr/logger#readme",
-  "dependencies": {
-    "mocha": "^6.1.4"
+  "devDependencies": {
+    "mocha": "^8.*"
   }
 }
